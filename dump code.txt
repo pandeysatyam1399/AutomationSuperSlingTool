@@ -1,0 +1,167 @@
+'''
+This is for dumping old unused code for reference if needed.
+
+'''
+
+
+# Pressedkeys = ["g", "Escape","plus","minus"]
+
+# def main(args):
+#     itach_objects = [itachIP2IR.itach() for _ in args]
+#     print("Automation started: " + str(args) + " On Time: " + str(time.time()))
+#     while True:
+#         for itach_obj, arg in zip(itach_objects, args):
+#             itach_obj.getData(arg)
+#             for keys in Pressedkeys:
+#                 itach_obj.OnKeyPress(keys)
+#                 # print("I pressed " + keys + " on itach: " + arg)
+#                 time.sleep(1)
+
+# if __name__ == "__main__":
+#     if len(sys.argv) > 1:
+#         args = sys.argv[1:]  # Get command line arguments (excluding the script name)
+#         main(args)
+#     else:
+#         print("Usage: python __init__.py <arg1> <arg2> ...")
+
+
+# import itachIP2IR
+# import time
+# import sys
+# import threading
+
+# Pressedkeys = ["g", "Escape", "plus", "minus"]
+
+# def worker(arg):
+#     itach_obj = itachIP2IR.itach()
+#     print("Automation started on itach: " + arg + " On time: " + str(time.time()))
+#     try:
+#         while True:
+#             itach_obj.getData(arg)
+#             for keys in Pressedkeys:
+#                 itach_obj.OnKeyPress(keys)
+#                 time.sleep(1)
+#     except KeyboardInterrupt:
+#         print(f"Exiting thread for itach: {arg}")
+
+# def main(args):
+#     threads = []
+#     try:
+
+#         for arg in args:
+#             thread = threading.Thread(target=worker, args=(arg,))
+#             threads.append(thread)
+#             thread.start()
+
+#         for thread in threads:
+#             thread.join()
+#     except KeyboardInterrupt:
+#         print("Ctrl+C detected. Exiting all threads and the program.")
+#         for thread in threads:
+#             thread.join()
+
+# if __name__ == "__main__":
+#     if len(sys.argv) > 1:
+#         args = sys.argv[1:]
+#         main(args)
+#     else:
+#         print("Usage: python __init__.py <arg1> <arg2> ...")
+# import itachIP2IR
+# import time
+# import sys
+# import threading
+# import signal
+
+# Pressedkeys = ["g", "Escape", "plus", "minus"]
+# exit_flag = False
+
+# def worker(arg):
+#     itach_obj = itachIP2IR.itach()
+#     print("Automation started on itach: " + arg)
+
+#     while not exit_flag:
+#         itach_obj.getData(arg)
+#         for keys in Pressedkeys:
+#             itach_obj.OnKeyPress(keys)
+#             time.sleep(1)
+
+# def signal_handler(sig, frame):
+#     global exit_flag
+#     exit_flag = True
+#     print("Ctrl+C detected. Exiting the program.")
+
+# def main(args):
+#     threads = []
+
+#     for arg in args:
+#         thread = threading.Thread(target=worker, args=(arg,))
+#         threads.append(thread)
+#         thread.start()
+
+#     signal.signal(signal.SIGINT, signal_handler)
+
+#     for thread in threads:
+#         thread.join()
+
+# if __name__ == "__main__":
+#     if len(sys.argv) > 1:
+#         args = sys.argv[1:]
+#         main(args)
+#     else:
+#         print("Usage: python __init__.py <arg1> <arg2> ...")
+
+# import fileinput
+
+# def generate_header(file_path):
+#     # Extract the filename from the file path
+#     filename = os.path.basename(file_path)
+    
+#     header = f"""
+# ################################################################
+
+# # File: {filename}
+# # Author: Satyam Pandey
+# # Date: 2023-11-02
+# # Description: This is a Python script for...
+
+# ################################################################
+# """.lstrip()
+#     return header
+
+# # def add_header_to_files(root_dir):
+# #     for dirpath, dirnames, filenames in os.walk(root_dir):
+# #         for filename in filenames:
+# #             if filename.endswith(".py"):
+# #                 file_path = os.path.join(dirpath, filename)
+# #                 header = generate_header(file_path)
+# #                 with open(file_path, 'r') as original:
+# #                     content = original.read()
+# #                 with open(file_path, 'w') as modified:
+# #                     modified.write(header + content)
+# def add_header_to_files(root_dir):
+#     for dirpath, dirnames, filenames in os.walk(root_dir):
+#         for filename in filenames:
+#             if filename.endswith(".py"):
+#                 file_path = os.path.join(dirpath, filename)
+#                 with open(file_path, 'r') as original:
+#                     content = original.read()
+                
+#                 # Check if the header already exists in the file
+#                 if content.startswith("# File:"):
+#                     header_end = content.find("################################################################", len("# File:"))
+#                     if header_end != -1:
+#                         content = content[header_end+1:]
+#                         print(content)
+                
+#                 header = generate_header(file_path)
+                
+#                 with open(file_path, 'w+') as modified:
+#                     print(content)
+#                     modified.write(header + content)
+
+# if __name__ == "__main__":
+#     project_root = "./"
+#     add_header_to_files(project_root)
+
+
+
